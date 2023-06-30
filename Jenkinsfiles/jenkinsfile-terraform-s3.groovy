@@ -12,7 +12,7 @@ pipeline {
                     withEnv (["Bucket_Name=${params.Bucket_Name}"]) {
                         sh 'sudo terraform init'
                         sleep(90)
-                        sh 'sudo terraform apply -var "Bucket_Name=${env.Bucket_Name}" -auto-approve'   
+                        sh 'sudo terraform apply -var "Bucket_Name=${Bucket_Name}" -auto-approve'   
                     }
                 }
             }
