@@ -8,9 +8,9 @@ pipeline {
         }
         stage ('Terraform') {
             steps {
-                dir ('/var/lib/jenkins/workplace/s3-terraform/Terraform/s3-new/') {
+                dir ('/var/lib/jenkins/workplace/Terraform/s3-new/') {
                     withEnv (["Bucket_Name = ${params.Bucket_Name}"]) {
-                        sh'sudo terrform init'
+                        sh'sudo terraform init'
                         sleep(90)
                         sh'sudo terraform apply -var "Bucket_Name = ${Bucket_Name}" -auto-approve'   
                     }
@@ -19,7 +19,7 @@ pipeline {
         }
         stage ('output') {
             steps {
-                echo "${Bucket_Name} has successfully crreated"
+                echo "${Bucket_Name} has successfully created"
             }
         }
     }
