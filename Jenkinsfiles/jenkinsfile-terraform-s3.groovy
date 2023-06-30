@@ -8,7 +8,7 @@ pipeline {
         }
         stage ('Terraform') {
             steps {
-                dir ('/var/lib/jenkins/workplace/Terraform/s3-new/') {
+                dir ('/var/lib/jenkins/workplace/s3/Terraform/s3-new/') {
                     withEnv (["Bucket_Name = ${params.Bucket_Name}"]) {
                         sh'sudo terraform init'
                         sleep(90)
