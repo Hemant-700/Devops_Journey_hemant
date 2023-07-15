@@ -1,0 +1,10 @@
+---
+- hosts: Dev
+  user: ansible
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: Git checkout
+      ansible.builtin.git:
+       repo: 'https://github.com/Devopsawsr/MNP-Devops.git'
+       dest: /mnp/

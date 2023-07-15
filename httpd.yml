@@ -1,0 +1,13 @@
+---
+- hosts: Dev
+  user: ansible
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: install httpd
+      yum: pkg=httpd state=installed
+    - name: pausing
+      pause:
+       prompt: "Prompt mesaage"    
+    - name: start httpd
+      service: name=httpd state=started    

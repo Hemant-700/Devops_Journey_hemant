@@ -1,0 +1,9 @@
+---
+- hosts: Dev
+  user: ansible
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: Git Install
+      yum: pkg=git state=installed
+
