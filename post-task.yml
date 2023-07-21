@@ -1,0 +1,25 @@
+---
+- name: This is to install git and httpd
+  hosts: Dev
+  user: ansible
+  become: yes
+  tasks:
+    - name: Install git and httpd
+      yum: pkg={{item}} state=installed
+      with_items:
+         - git
+         - httpd
+    - name: start the httpd
+      service: name=httpd state=started
+    - name: Wait for the approval
+      pause:
+        prompt: "Need your approvel for Build"  
+    - name: Code checkout
+      ansible.builtin.git:
+       repo: 'https://github.com/Devopsawsr/MNP-Devops.git'
+       dest: /mnp/
+    - name: Deployment
+      shell: cp /mnp/index.html /var/www/html/
+  post_tasks:
+    - name: post task
+      raw: date > /tmp/deploy.out

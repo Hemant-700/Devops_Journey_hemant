@@ -1,0 +1,9 @@
+- hosts: Dev
+  user: ansible
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: Install Apache server in Amazon Linux
+      yum: pkg=httpd state=installed
+      when: ansible_distribution == 'Amazon' and ansible_os_family == 'RedHat'
+

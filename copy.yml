@@ -1,0 +1,11 @@
+---
+- name: This is to install git and httpd
+  hosts: Dev
+  user: ansible
+  become: yes
+  tasks:
+    - name: Install git and httpd
+      file:
+       path: /tmp/hema
+       state: touch
+       mode: "0777"
